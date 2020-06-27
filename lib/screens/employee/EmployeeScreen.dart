@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:triage/models/EmployeeProvider.dart';
 import 'package:triage/models/HealthDeclarationProvider.dart';
 import 'package:triage/screens/employee/SearchEmployeeForm.dart';
 

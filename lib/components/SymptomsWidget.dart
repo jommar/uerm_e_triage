@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:triage/components/DirectionsText.dart';
 import 'package:triage/components/HealthDeclarationSwitch.dart';
 
 class SymptomsWidget extends StatelessWidget {
@@ -53,6 +53,9 @@ class SymptomsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
+        DirectionsText(
+          title: 'Please click on the symptoms that you are currently experiencing. Click Continue to proceed.',
+        ),
         ...symptoms
             .map(
               (item) => HealthDeclarationSwitch(item: item,),

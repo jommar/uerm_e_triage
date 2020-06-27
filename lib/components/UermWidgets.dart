@@ -1,7 +1,5 @@
 // import 'package:e_patient_portal/models/AuthProvider.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 class LoadingWidget extends StatelessWidget {
   @override
