@@ -21,16 +21,64 @@ class _EmployeeSearchFormState extends State<EmployeeSearchForm> {
 
   _searchEmployee({@required BuildContext context}) async {
     if (_formKey.currentState.saveAndValidate()) {
+      Scaffold.of(context).hideCurrentSnackBar();
       setState(() {
         _isLoading = true;
       });
       final Map formVals = _formKey.currentState.value;
 
-      await Provider.of<EmployeeProvider>(context, listen: false)
-          .searchEmployee(search: formVals['search']);
+      final result = await Provider.of<EmployeeProvider>(context, listen: false)
+          .searchEmployee(
+              code: formVals['code'], password: formVals['password']);
       setState(() {
         _isLoading = false;
       });
+      Scaffold.of(context).showSnackBar(SnackBar(
+        backgroundColor: result['error'] != null
+            ? Theme.of(context).errorColor
+            : Colors.green[900],
+        content: Text(
+          result['message'],
+          textAlign: TextAlign.center,
+        ),
+      ));
+      if (result['success'] != null) {
+        Scaffold.of(context).hideCurrentSnackBar();
+        // print('YAAY');
+        await _selectEmployee(
+          employee: result['details'],
+          context: context,
+        );
+      } else {
+        Provider.of<EmployeeProvider>(context, listen: false).clearEmployees();
+      }
+    }
+  }
+
+  _selectEmployee({@required Map employee, BuildContext context}) async {
+    Provider.of<HealthDeclarationProvider>(context, listen: false)
+        .setEmployee(code: employee['CODE']);
+    Provider.of<EmployeeProvider>(context, listen: false)
+        .setEmployeeDetails(employeeDetails: employee);
+    final response = await Provider.of<EmployeeProvider>(context, listen: false)
+        .checkDailyVisit(code: employee['CODE']);
+
+    if (response['alreadyVisited']) {
+      Map args = {};
+      if (response['employeeData']['symptoms'] != null) {
+        args = Provider.of<HealthDeclarationProvider>(context, listen: false)
+            .argsCovidEr;
+      } else if (response['employeeData']['temperature'] > 37.7) {
+        args = Provider.of<HealthDeclarationProvider>(context, listen: false)
+            .argsCovidEr;
+      } else {
+        args = Provider.of<HealthDeclarationProvider>(context, listen: false)
+            .argsContinue;
+      }
+      _redirect(Navigator.of(context)
+          .pushNamed('/health-declaration-status', arguments: args));
+    } else {
+      _redirect(Navigator.of(context).pushNamed('/health-declaration'));
     }
   }
 
@@ -46,14 +94,31 @@ class _EmployeeSearchFormState extends State<EmployeeSearchForm> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             FormBuilderTextField(
-              attribute: 'search',
+              attribute: 'code',
               textAlign: TextAlign.center,
               validators: [
                 FormBuilderValidators.required(),
               ],
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                  labelText: 'Employee Code/Name',
+                  labelText: 'Employee Code',
+                  labelStyle: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      .copyWith(color: Colors.black38)),
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            FormBuilderTextField(
+              attribute: 'password',
+              obscureText: true,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              validators: [
+                FormBuilderValidators.required(),
+              ],
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                  labelText: 'Password',
                   labelStyle: Theme.of(context)
                       .textTheme
                       .headline6

@@ -53,6 +53,8 @@ class _HealthDeclarationScreenState extends State<HealthDeclarationScreen> {
         args = Provider.of<HealthDeclarationProvider>(context, listen: false).argsContinue;
       }
 
+      Provider.of<EmployeeProvider>(context, listen: false).clearEmployees();
+
       Navigator.of(context).popUntil(ModalRoute.withName('/'));
       Navigator.of(context)
           .pushNamed('/health-declaration-status', arguments: args);
