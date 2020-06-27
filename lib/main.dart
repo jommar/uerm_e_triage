@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:triage/models/AuthProvider.dart';
 import 'package:triage/models/EmployeeProvider.dart';
 import 'package:triage/models/HealthDeclarationProvider.dart';
 import 'package:triage/screens/HealthDeclarationStatusScreen.dart';
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(),
+        ),
         ChangeNotifierProvider(
           create: (_) => EmployeeProvider(),
         ),

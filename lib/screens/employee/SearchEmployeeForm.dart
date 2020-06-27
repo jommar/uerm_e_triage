@@ -3,6 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:triage/components/UermWidgets.dart';
+import 'package:triage/models/AuthProvider.dart';
 import 'package:triage/models/EmployeeProvider.dart';
 import 'package:triage/models/HealthDeclarationProvider.dart';
 
@@ -56,6 +57,8 @@ class _EmployeeSearchFormState extends State<EmployeeSearchForm> {
   }
 
   _selectEmployee({@required Map employee, BuildContext context}) async {
+    Provider.of<AuthProvider>(context, listen: false)
+        .setName(name: employee['NAME']);
     Provider.of<HealthDeclarationProvider>(context, listen: false)
         .setEmployee(code: employee['CODE']);
     Provider.of<EmployeeProvider>(context, listen: false)
@@ -93,6 +96,17 @@ class _EmployeeSearchFormState extends State<EmployeeSearchForm> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            Container(
+              padding: EdgeInsets.all(20),
+              margin: EdgeInsets.all(10),
+              color: Colors.blue[100],
+              child: Text(
+                'Use your login credentials in the UERM Web Apps.',
+                style: Theme.of(context).textTheme.bodyText2.copyWith(
+                  color: Colors.blue[900],
+                )
+              ),
+            ),
             FormBuilderTextField(
               attribute: 'code',
               textAlign: TextAlign.center,
