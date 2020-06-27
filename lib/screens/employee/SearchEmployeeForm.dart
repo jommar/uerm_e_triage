@@ -131,8 +131,8 @@ class _EmployeeSearchFormState extends State<EmployeeSearchForm> {
                     onPressed: () {
                       _searchEmployee(context: context);
                     },
-                    icon: Icon(FontAwesomeIcons.search),
-                    label: Text('Search'),
+                    icon: Icon(FontAwesomeIcons.signInAlt),
+                    label: Text('Login'),
                   ),
             if (!_isLoading)
               Expanded(
