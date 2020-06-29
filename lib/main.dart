@@ -58,29 +58,25 @@ class Router extends StatelessWidget {
       'color': Colors.blue,
       'icon': FontAwesomeIcons.hospitalUser,
       'route': '/employees',
-      'disabled': false,
     },
-    // {
-    //   'title': 'Visitors',
-    //   'color': Colors.red,
-    //   'icon': FontAwesomeIcons.users,
-    //   'route': '/visitors',
-    //   'disabled': true,
-    // },
-    // {
-    //   'title': 'Consultants',
-    //   'color': Colors.orange,
-    //   'icon': FontAwesomeIcons.userMd,
-    //   'route': '/consultants',
-    //   'disabled': true,
-    // },
-    // {
-    //   'title': 'Others',
-    //   'color': Colors.purple,
-    //   'icon': FontAwesomeIcons.userShield,
-    //   'route': '/others',
-    //   'disabled': true,
-    // },
+    {
+      'title': 'Visitors',
+      'color': Colors.red,
+      'icon': FontAwesomeIcons.users,
+      'route': '/visitors',
+    },
+    {
+      'title': 'Consultants',
+      'color': Colors.orange,
+      'icon': FontAwesomeIcons.userMd,
+      'route': '/consultants',
+    },
+    {
+      'title': 'Others',
+      'color': Colors.purple,
+      'icon': FontAwesomeIcons.userShield,
+      'route': '/others',
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -97,7 +93,7 @@ class Router extends StatelessWidget {
           Map currentPage = _pages[index];
           return InkWell(
             onTap: () {
-              currentPage['disabled'] ? null : Navigator.of(context).pushNamed(currentPage['route']);
+              Navigator.of(context).pushNamed(currentPage['route']);
             },
             child: Card(
               child: Column(
