@@ -66,24 +66,24 @@ class Router extends StatelessWidget {
       'icon': FontAwesomeIcons.hospitalUser,
       'route': '/employees',
     },
-    {
-      'title': 'Visitors',
-      'color': Colors.red,
-      'icon': FontAwesomeIcons.users,
-      'route': '/navigation',
-    },
-    {
-      'title': 'Consultants',
-      'color': Colors.orange,
-      'icon': FontAwesomeIcons.userMd,
-      'route': '/navigation',
-    },
-    {
-      'title': 'Others',
-      'color': Colors.purple,
-      'icon': FontAwesomeIcons.userShield,
-      'route': '/navigation',
-    },
+    // {
+    //   'title': 'Visitors',
+    //   'color': Colors.red,
+    //   'icon': FontAwesomeIcons.users,
+    //   'route': '/navigation',
+    // },
+    // {
+    //   'title': 'Consultants',
+    //   'color': Colors.orange,
+    //   'icon': FontAwesomeIcons.userMd,
+    //   'route': '/navigation',
+    // },
+    // {
+    //   'title': 'Others',
+    //   'color': Colors.purple,
+    //   'icon': FontAwesomeIcons.userShield,
+    //   'route': '/navigation',
+    // },
   ];
   @override
   Widget build(BuildContext context) {
