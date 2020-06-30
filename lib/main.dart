@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:triage/components/NavigatorWidget.dart';
+import 'package:triage/components/RegisterWidget.dart';
+import 'package:triage/components/SearchWidget.dart';
 import 'package:triage/models/AuthProvider.dart';
 import 'package:triage/models/EmployeeProvider.dart';
 import 'package:triage/models/HealthDeclarationProvider.dart';
 import 'package:triage/screens/HealthDeclarationStatusScreen.dart';
 import 'package:triage/screens/employee/EmployeeScreen.dart';
 import 'package:triage/screens/healthDeclaration/HealthDeclarationScreen.dart';
+import 'package:triage/screens/visitor/VisitorScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,6 +50,8 @@ class MyApp extends StatelessWidget {
           '/health-declaration': (_) => HealthDeclarationScreen(),
           '/employees': (_) => EmployeeScreen(),
           '/health-declaration-status': (_) => HealthDeclarationStatusScreen(),
+          '/navigation': (_) => NavigatorWidget(),
+          '/register': (_) => RegisterWidget(),
         },
       ),
     );
@@ -64,19 +70,19 @@ class Router extends StatelessWidget {
       'title': 'Visitors',
       'color': Colors.red,
       'icon': FontAwesomeIcons.users,
-      'route': '/visitors',
+      'route': '/navigation',
     },
     {
       'title': 'Consultants',
       'color': Colors.orange,
       'icon': FontAwesomeIcons.userMd,
-      'route': '/consultants',
+      'route': '/navigation',
     },
     {
       'title': 'Others',
       'color': Colors.purple,
       'icon': FontAwesomeIcons.userShield,
-      'route': '/others',
+      'route': '/navigation',
     },
   ];
   @override
