@@ -110,7 +110,7 @@ class _HealthDeclarationScreenState extends State<HealthDeclarationScreen> {
                             ),
                             BodyWidget(
                               label:
-                                  'In line with the Republic Act 11332 "Mandatory Reporting of Notifiable Diseases and Health Events of Public Health Concern Act", and to assure the safety and protection of the general public, please fill out this HEALTH DECLARATION FORM truthfully. This required information will be used in accordance with the law. Any incorrect information provided will be dealth with accordingly. Submit yourself for temperature checking and recording, and proceed to completing the information. Thank you.',
+                                  'In line with the Republic Act 11332 "Mandatory Reporting of Notifiable Diseases and Health Events of Public Health Concern Act", and to assure the safety and protection of the general public, please fill out this HEALTH DECLARATION FORM truthfully. This required information will be used in accordance with the law. Any incorrect information provided will be dealth with accordingly. Submit yourself for temperature checking and recording, and procedd to completing the information. Thank you.',
                             ),
                           ],
                         );
