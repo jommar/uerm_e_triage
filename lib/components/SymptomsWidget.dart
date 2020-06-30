@@ -45,7 +45,7 @@ class SymptomsWidget extends StatelessWidget {
       },
       {
         'code': 'sense_of_smell_taste',
-        'english': 'New on-set less or decreased sense of smell and or taste',
+        'english': 'New onset less or decreased sense of smell and or taste',
         'tagalog': 'Kawalan ng pang-amoy o panlasa',
       },
     ];
@@ -54,11 +54,14 @@ class SymptomsWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         DirectionsText(
-          title: 'Please click on the symptoms that you are currently experiencing. Click Continue to proceed.',
+          title:
+              'Please click on the symptoms that you are currently experiencing. Click Continue to proceed.',
         ),
         ...symptoms
             .map(
-              (item) => HealthDeclarationSwitch(item: item,),
+              (item) => HealthDeclarationSwitch(
+                item: item,
+              ),
             )
             .toList(),
       ],
