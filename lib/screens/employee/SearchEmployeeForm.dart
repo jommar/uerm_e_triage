@@ -100,12 +100,10 @@ class _EmployeeSearchFormState extends State<EmployeeSearchForm> {
               padding: EdgeInsets.all(20),
               margin: EdgeInsets.all(10),
               color: Colors.blue[100],
-              child: Text(
-                'Use your login credentials in the UERM Web Apps.',
-                style: Theme.of(context).textTheme.bodyText2.copyWith(
-                  color: Colors.blue[900],
-                )
-              ),
+              child: Text('Use your login credentials in the UERM Web Apps.',
+                  style: Theme.of(context).textTheme.bodyText2.copyWith(
+                        color: Colors.blue[900],
+                      )),
             ),
             FormBuilderTextField(
               attribute: 'code',
@@ -124,6 +122,7 @@ class _EmployeeSearchFormState extends State<EmployeeSearchForm> {
             ),
             FormBuilderTextField(
               attribute: 'password',
+              // initialValue: 'uerm_misd',
               obscureText: true,
               maxLines: 1,
               textAlign: TextAlign.center,

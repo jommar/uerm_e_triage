@@ -29,8 +29,8 @@ class _HealthDeclarationScreenState extends State<HealthDeclarationScreen> {
         ..._formKey.currentState.value,
       };
 
-      _formVal['temperature'] =
-          double.parse(_formVal['temperature'].toStringAsFixed(1));
+      _formVal['temperature'] = double.parse(
+          double.parse(_formVal['temperature']).toStringAsFixed(1));
 
       final response =
           await Provider.of<HealthDeclarationProvider>(context, listen: false)
@@ -48,9 +48,11 @@ class _HealthDeclarationScreenState extends State<HealthDeclarationScreen> {
       }
 
       if (response['isForCovidEr']) {
-        args = Provider.of<HealthDeclarationProvider>(context, listen: false).argsCovidEr;
+        args = Provider.of<HealthDeclarationProvider>(context, listen: false)
+            .argsCovidEr;
       } else {
-        args = Provider.of<HealthDeclarationProvider>(context, listen: false).argsContinue;
+        args = Provider.of<HealthDeclarationProvider>(context, listen: false)
+            .argsContinue;
       }
 
       Provider.of<EmployeeProvider>(context, listen: false).clearEmployees();
@@ -82,84 +84,88 @@ class _HealthDeclarationScreenState extends State<HealthDeclarationScreen> {
       appBar: AppBar(
         title: Text('Health Declaration Form'),
       ),
-      body: SingleChildScrollView(
-        child: FormBuilder(
-          key: _formKey,
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(20),
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    switch (_currentPage) {
-                      case 1:
-                        return SymptomsWidget();
-                      case 2:
-                        return HistoryWidget();
-                      case 3:
-                        return SaveFormWidget(
-                          employeeName:
-                              employeeProvider.employeeDetails['NAME'],
-                        );
-                      default:
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            HeaderWidget(
-                              label: 'COVID-19 HEALTH DECLARATION FORM',
-                            ),
-                            BodyWidget(
-                              label:
-                                  'In line with the Republic Act 11332 "Mandatory Reporting of Notifiable Diseases and Health Events of Public Health Concern Act", and to assure the safety and protection of the general public, please fill out this HEALTH DECLARATION FORM truthfully. This required information will be used in accordance with the law. Any incorrect information provided will be dealth with accordingly. Submit yourself for temperature checking and recording, and procedd to completing the information. Thank you.',
-                            ),
-                          ],
-                        );
-                    }
-                  },
-                ),
-              ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        if (_currentPage < 3) {
-                          return RaisedButton(
-                            onPressed: () {
-                              _validateForm();
-                            },
-                            child: Text('Continue'),
+      body: FormBuilder(
+        key: _formKey,
+        child: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      switch (_currentPage) {
+                        case 1:
+                          return SymptomsWidget();
+                        case 2:
+                          return HistoryWidget();
+                        case 3:
+                          return SaveFormWidget(
+                            employeeName:
+                                employeeProvider.employeeDetails['NAME'],
                           );
-                        }
-                        return RaisedButton.icon(
-                          onPressed: () {
-                            _saveForm(
-                                context: context,
-                                code: employeeProvider.employeeDetails['CODE']);
-                          },
-                          label: Text('Submit'),
-                          icon: Icon(FontAwesomeIcons.save),
-                        );
-                      },
-                    ),
-                    FlatButton(
-                      onPressed: () {
-                        if (_currentPage > 0) {
-                          setState(() {
-                            _currentPage--;
-                          });
-                          return;
-                        }
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Back'),
-                    ),
-                  ],
+                        default:
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              HeaderWidget(
+                                label: 'COVID-19 HEALTH DECLARATION FORM',
+                              ),
+                              BodyWidget(
+                                label:
+                                    'In line with the Republic Act 11332 "Mandatory Reporting of Notifiable Diseases and Health Events of Public Health Concern Act", and to assure the safety and protection of the general public, please fill out this HEALTH DECLARATION FORM truthfully. This required information will be used in accordance with the law. Any incorrect information provided will be dealth with accordingly. Submit yourself for temperature checking and recording, and procedd to completing the information. Thank you.',
+                              ),
+                            ],
+                          );
+                      }
+                    },
+                  ),
                 ),
               ),
-            ],
-          ),
+            ),
+            Container(
+              color: Colors.black12,
+              padding: EdgeInsets.only(top: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      if (_currentPage < 3) {
+                        return RaisedButton(
+                          onPressed: () {
+                            _validateForm();
+                          },
+                          child: Text('Continue'),
+                        );
+                      }
+                      return RaisedButton.icon(
+                        onPressed: () {
+                          _saveForm(
+                              context: context,
+                              code: employeeProvider.employeeDetails['CODE']);
+                        },
+                        label: Text('Submit'),
+                        icon: Icon(FontAwesomeIcons.save),
+                      );
+                    },
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      if (_currentPage > 0) {
+                        setState(() {
+                          _currentPage--;
+                        });
+                        return;
+                      }
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Back'),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

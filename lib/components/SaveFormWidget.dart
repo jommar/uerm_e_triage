@@ -11,15 +11,17 @@ class SaveFormWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        FormBuilderSlider(
+        FormBuilderTextField(
           attribute: 'temperature',
-          initialValue: 34,
-          min: 34,
-          max: 42,
+          // initialValue: 34,
+          // min: 34,
+          // max: 42,
           decoration: InputDecoration(
             labelText: 'Temperature',
           ),
+          maxLines: 1,
           validators: [
+            FormBuilderValidators.numeric(),
             FormBuilderValidators.min(35),
             FormBuilderValidators.max(42),
           ],
@@ -28,10 +30,11 @@ class SaveFormWidget extends StatelessWidget {
           attribute: 'confirm',
           validators: [
             FormBuilderValidators.requiredTrue(
-              errorText: 'You have to accept this field in order to continue.'
-            ),
+                errorText:
+                    'You have to accept this field in order to continue.'),
           ],
-          label: Text('I, $employeeName certify that the information I have given is true, correct, and complete. I understand that failure to answer any question or giving false answer can be penalized in accordance with law. I voluntarily and freely consent to the collection, processing, sharing and storage of the above personal information with the Data Privacy Act of 2012 and it\'s implementing Rules and Regulations.'),
+          label: Text(
+              'I, $employeeName certify that the information I have given is true, correct, and complete. I understand that failure to answer any question or giving false answer can be penalized in accordance with law. I voluntarily and freely consent to the collection, processing, sharing and storage of the above personal information with the Data Privacy Act of 2012 and it\'s implementing Rules and Regulations.'),
         ),
       ],
     );

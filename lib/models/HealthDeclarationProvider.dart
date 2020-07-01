@@ -22,6 +22,7 @@ class HealthDeclarationProvider with ChangeNotifier {
   Map get argsCovidEr {
     return _argsCovidEr;
   }
+
   Map get argsContinue {
     return _argsContinue;
   }
