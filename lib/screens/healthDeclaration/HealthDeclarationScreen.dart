@@ -125,7 +125,7 @@ class _HealthDeclarationScreenState extends State<HealthDeclarationScreen> {
             ),
             Container(
               color: Colors.black12,
-              padding: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.only(top: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

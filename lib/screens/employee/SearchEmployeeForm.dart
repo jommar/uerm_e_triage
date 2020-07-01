@@ -148,17 +148,15 @@ class _EmployeeSearchFormState extends State<EmployeeSearchForm> {
                     label: Text('Login'),
                   ),
             if (!_isLoading)
-              Expanded(
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    if (employeeProvider.employees.length > 0) {
-                      return EmployeeList(
-                          employees: employeeProvider.employees,
-                          redirect: _redirect);
-                    }
-                    return Container();
-                  },
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  if (employeeProvider.employees.length > 0) {
+                    return EmployeeList(
+                        employees: employeeProvider.employees,
+                        redirect: _redirect);
+                  }
+                  return Container();
+                },
               ),
           ],
         ),
@@ -205,22 +203,39 @@ class EmployeeList extends StatelessWidget {
       builder: (context, constraints) {
         return Container(
           height: constraints.maxWidth,
-          child: ListView.builder(
-            itemCount: employees.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                onTap: () {
-                  _selectEmployee(employee: employees[index], context: context);
-                },
-                leading: CircleAvatar(
-                  radius: 60,
-                  child: Text(employees[index]['CODE']),
-                ),
-                title: Text(employees[index]['NAME']),
-                subtitle: Text(employees[index]['POS_DESC']),
-              );
-            },
+          child: Column(
+            children: [
+              ...employees
+                  .map((employee) => ListTile(
+                        onTap: () {
+                          _selectEmployee(employee: employee, context: context);
+                        },
+                        leading: CircleAvatar(
+                          radius: 60,
+                          child: Text(employee['CODE']),
+                        ),
+                        title: Text(employee['NAME']),
+                        subtitle: Text(employee['POS_DESC']),
+                      ))
+                  .toList(),
+            ],
           ),
+          // child: ListView.builder(
+          //   itemCount: employees.length,
+          //   itemBuilder: (context, index) {
+          //     return ListTile(
+          //       onTap: () {
+          //         _selectEmployee(employee: employees[index], context: context);
+          //       },
+          //       leading: CircleAvatar(
+          //         radius: 60,
+          //         child: Text(employees[index]['CODE']),
+          //       ),
+          //       title: Text(employees[index]['NAME']),
+          //       subtitle: Text(employees[index]['POS_DESC']),
+          //     );
+          //   },
+          // ),
         );
       },
     );

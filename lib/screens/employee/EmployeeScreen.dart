@@ -8,12 +8,15 @@ class EmployeeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final healthDeclarationProvider = Provider.of<HealthDeclarationProvider>(context);
+    final healthDeclarationProvider =
+        Provider.of<HealthDeclarationProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Employees'),
       ),
-      body: EmployeeSearchForm(),
+      body: SingleChildScrollView(
+        child: EmployeeSearchForm(),
+      ),
     );
   }
 }
